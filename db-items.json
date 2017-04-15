@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": 2,
+      "marca": "Marca_Celular_2",
+      "modelo": "Modelo_Celular_2",
+      "precio": 1002,
+      "tipo": "celular"
+    },
+    {
+      "id": 4,
+      "marca": "Marca_Computadora_4",
+      "modelo": "Modelo_Computadora_4",
+      "precio": 1005,
+      "tipo": "computadora"
+    }
+  ]
+}

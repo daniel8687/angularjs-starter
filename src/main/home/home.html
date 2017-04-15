@@ -1,0 +1,50 @@
+ <script type="text/ng-template" id="editItem.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Editar Item</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">Editar</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+        </div>
+    </script>
+
+<div>
+    <ul>
+    <li><a id="computadora" href ng-click="search = {tipo: 'computadora'}">Computadoras</a></li>
+    <li><a id="celular" href ng-click="search = {tipo: 'celular'}">Celulares</a></li>
+    </ul>
+</div>
+<div> 
+    <table ts-wrapper>
+        <thead>
+            <tr>
+                <th ts-criteria="Id" ts-default>Id</th>
+                <th ts-criteria="Marca|lowercase" ts-default>Marca</th>
+                <th ts-criteria="Modelo|lowercase" ts-default>Modelo</th>
+                <th ts-criteria="Precio|parseFloat">Precio ($us)</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in $ctrl.items | filter: search" ts-repeat>
+                <td>{{item.id}}</td>
+                <td>{{item.marca}}</td>
+                <td>{{item.modelo}}</td>
+                <td>{{item.precio | currency}}</td>
+                <td>
+                    <input type="button" value="Editar" class="btn btn-primary" ng-click="editarRow(item)" />
+                    <input type="button" value="Remover" class="btn btn-primary" ng-click="removerRow(item)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-dialog">
+    <div class="loginmodal-container">
+        <h1>Inicio de Sesion</h1><br>
+        <form>
+            <input type="text" name="user" placeholder="Usuario" ng-model="$ctrl.user.userName">
+            <input type="password" name="pass" placeholder="Contraseña" ng-model="$ctrl.user.userPassword">
+            <div ng-show="$ctrl.error">
+                {{$ctrl.error}}
+            </div>
+            <button class="btn btn-primary" ng-click="$ctrl.validationLogin()">Entrar</button>
+        </form>
+    </div>
+</div>

@@ -53,38 +53,84 @@ function AppHomeController(ItemService, $scope, $window, $uibModal) {
             controller: 'AppEditItemController',
             size: '',
             resolve: {
-                items: function () {
+                item: function () {
                     return item;
                 }
             }
         });
 
         modalInstance.opened.then(function () {
+            console.log('modalInstance.opened');
             $scope.modalOpen = true;
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.modalOpen = false;
+        modalInstance.result.then(function (item) {
+            console.log('modalInstance.result');
+            $scope.modalOpen = false;           
         }, function () {
+            console.log('modalInstance.result01');
             $scope.modalOpen = false;
+        });
+
+        modalInstance.closed.then(function () {
+            console.log('$uibModal.closed');
+             /* REFRESCAR */
+            promise = ItemService.getItems();
+            promise.then(function (result) {
+                console.log('result', result);
+                vm.items = result;
+            }).catch(function (error) {
+                console.log('Error found:', error);
+                vm.error = 'Cannot find items';
+            }).finally(function () {
+                console.log('getItems is finished');
+            });
         });
     };
 
     $scope.toggleAnimation = function () {
+        console.log('$scope.toggleAnimation');
         $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 }
 
-function AppEditItemController($scope, $uibModalInstance, items) {
-    console.log('Running editItem controller');
+function AppEditItemController(ItemService, $scope, $uibModalInstance, item) {
+    console.log('Running EditItem controller');
     $scope.currentModal = $uibModalInstance;
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
+    $scope.item = item;
+    $scope.itemToEdit = {};
+    $scope.itemNewt = {};
 
-    $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+    $scope.edit = function () {
+        $scope.itemNewt.id = $scope.item.id;
+        if ($scope.itemToEdit.marca === undefined) {
+            $scope.itemNewt.marca = $scope.item.marca;
+        }
+        else {
+            $scope.itemNewt.marca = $scope.itemToEdit.marca;
+        }
+        if ($scope.itemToEdit.modelo === undefined) {
+            $scope.itemNewt.modelo = $scope.item.modelo;
+        }
+        else {
+            $scope.itemNewt.modelo = $scope.itemToEdit.modelo;
+        }
+        if ($scope.itemToEdit.precio === undefined) {
+            $scope.itemNewt.precio = $scope.item.precio;
+        }
+        else {
+            $scope.itemNewt.precio = $scope.itemToEdit.precio;
+        }
+        $scope.itemNewt.tipo = $scope.item.tipo;
+        console.log($scope.itemToEdit);
+        console.log($scope.item);
+
+        var promise = ItemService.editItem($scope.itemNewt);
+        promise.then(function (result) {
+            console.log('Edit Item', result);
+        });
+
+        $uibModalInstance.close($scope.item);
     };
 
     $scope.cancel = function () {

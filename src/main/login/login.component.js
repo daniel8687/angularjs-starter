@@ -1,17 +1,25 @@
-function AppLoginController(UserService) {
+function AppLoginController(UserService, $state) {
     console.log('Running login controller');
     var vm = this;
     vm.user = {};
 
-    vm.validationLogin = function () {        
+    vm.validationLogin = function () {
         var promise = UserService.validateUser(vm.user);
-        if (promise === true) {
-            vm.error = null;
-            window.location.replace(window.location.protocol + "//" + window.location.host + "/home");
-        }
-        else {
-            vm.error = 'Usuario o Contraseña invalida. Por favor intente nuevamente';
-        }
+        promise.then(function (result) {
+            console.log('result login', result);
+            if (result.length === 1) {
+                vm.error = null;
+                $state.go('home');
+            }
+            else {
+                vm.error = 'Usuario o Contraseña invalida. Por favor intente nuevamente';
+            }
+        }).catch(function (error) {
+            console.log('Error found login:', error);
+            vm.error = 'Ocurrio un error al momento de iniciar sesion. Por favor contactese con el administrador';
+        }).finally(function () {
+            console.log('validationLogin is finished');
+        });
     };
 }
 

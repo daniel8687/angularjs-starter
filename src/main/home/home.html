@@ -1,28 +1,38 @@
- <script type="text/ng-template" id="editItem.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Editar Item</h3>
+<script type="text/ng-template" id="editItem.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Editar Item</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div>
+            <label class="labelEdit">Id: </label>
+            <input class= "inputEdit" type="text" ng-value="item.id" ng-model="itemToEdit.id" disabled="disabled" />
         </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
+        <div>
+            <label class="labelEdit">Marca: </label>
+            <input class= "inputEdit" type="text" ng-value="item.marca" ng-model="itemToEdit.marca" />
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">Editar</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+        <div>
+            <label class="labelEdit">Modelo: </label>
+            <input class= "inputEdit" type="text" ng-value="item.modelo" ng-model="itemToEdit.modelo" />
         </div>
-    </script>
+        <div>
+            <label class="labelEdit">Precio ($us): </label>
+            <input class= "inputEdit" type="text" ng-value="item.precio" ng-model="itemToEdit.precio" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="edit()">Editar</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+    </div>
+</script>
 
 <div>
     <ul>
-    <li><a id="computadora" href ng-click="search = {tipo: 'computadora'}">Computadoras</a></li>
-    <li><a id="celular" href ng-click="search = {tipo: 'celular'}">Celulares</a></li>
+        <li><a id="computadora" href ng-click="search = {tipo: 'computadora'}">Computadoras</a></li>
+        <li><a id="celular" href ng-click="search = {tipo: 'celular'}">Celulares</a></li>
     </ul>
 </div>
-<div> 
+<div>
     <table ts-wrapper>
         <thead>
             <tr>
@@ -41,7 +51,7 @@
                 <td>{{item.precio | currency}}</td>
                 <td>
                     <input type="button" value="Editar" class="btn btn-primary" ng-click="editarRow(item)" />
-                    <input type="button" value="Remover" class="btn btn-primary" ng-click="removerRow(item)" />
+                    <input type="button" value="Remover" class="btn btn-warning" ng-click="removerRow(item)" />
                 </td>
             </tr>
         </tbody>

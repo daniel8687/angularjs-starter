@@ -8,11 +8,46 @@
       "tipo": "celular"
     },
     {
+      "id": 3,
+      "marca": "Marca_Celular_3",
+      "modelo": "Modelo_Celular_3",
+      "precio": 1003,
+      "tipo": "celular"
+    },
+    {
       "id": 4,
-      "marca": "Marca_Computadora_4",
-      "modelo": "Modelo_Computadora_4",
+      "marca": "Marca_aa_4",
+      "modelo": "Modelo_bb_4",
       "precio": 1005,
       "tipo": "computadora"
+    },
+    {
+      "id": 5,
+      "marca": "Marca_Computadora_5",
+      "modelo": "Modelo_Computadora_5",
+      "precio": 1005,
+      "tipo": "computadora"
+    },
+    {
+      "id": 6,
+      "marca": "Marca_Computadora_6",
+      "modelo": "Modelo_Computadora_6",
+      "precio": 1006,
+      "tipo": "computadora"
+    },
+    {
+      "id": 7,
+      "marca": "Marca_Computadora_7",
+      "modelo": "Modelo_Computadora_7",
+      "precio": 1007,
+      "tipo": "computadora"
+    },
+    {
+      "id": 8,
+      "marca": "Marca_Celular_8",
+      "modelo": "Modelo_Celular_8",
+      "precio": 1008,
+      "tipo": "celular"
     }
   ]
 }

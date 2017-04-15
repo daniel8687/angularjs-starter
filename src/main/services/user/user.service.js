@@ -9,20 +9,14 @@ function UserService($log, $q, $resource) {
     };
 
     function validateUser(user) {
-        if(user.userName === "test" && user.userPassword === "test")
-        {
-            return true;
-        }
-        return false;
-        /*
         $log.info('Running validateUser');
         var future = $q.defer();
-        resource.get({userName:user.userName}).$promise.then(function (result) {
+        resource.query({'userName': user.userName}, {'userPassword': user.userPassword}).$promise.then(function (result) {
+            console.log(result);
             future.resolve(result);
         }).catch(function (error) {
             future.reject(error);
         });
         return future.promise;
-        */
     }
 }

@@ -5,19 +5,19 @@
     <div class="modal-body" id="modal-body">
         <div>
             <label class="labelEdit">Id: </label>
-            <input class= "inputEdit" type="text" ng-value="item.id" ng-model="itemToEdit.id" disabled="disabled" />
+            <input class="inputEdit" type="text" ng-value="item.id" ng-model="itemToEdit.id" disabled="disabled" />
         </div>
         <div>
             <label class="labelEdit">Marca: </label>
-            <input class= "inputEdit" type="text" ng-value="item.marca" ng-model="itemToEdit.marca" />
+            <input class="inputEdit" type="text" ng-value="item.marca" ng-model="itemToEdit.marca" />
         </div>
         <div>
             <label class="labelEdit">Modelo: </label>
-            <input class= "inputEdit" type="text" ng-value="item.modelo" ng-model="itemToEdit.modelo" />
+            <input class="inputEdit" type="text" ng-value="item.modelo" ng-model="itemToEdit.modelo" />
         </div>
         <div>
             <label class="labelEdit">Precio ($us): </label>
-            <input class= "inputEdit" type="text" ng-value="item.precio" ng-model="itemToEdit.precio" />
+            <input class="inputEdit" type="text" ng-value="item.precio" ng-model="itemToEdit.precio" />
         </div>
     </div>
     <div class="modal-footer">
@@ -36,15 +36,25 @@
     <table ts-wrapper>
         <thead>
             <tr>
-                <th ts-criteria="Id" ts-default>Id</th>
-                <th ts-criteria="Marca|lowercase" ts-default>Marca</th>
-                <th ts-criteria="Modelo|lowercase" ts-default>Modelo</th>
-                <th ts-criteria="Precio|parseFloat">Precio ($us)</th>
-                <th>Opciones</th>
+                <th ts-criteria="Id" ts-default>
+                    <a href="#" ng-click="orderByField='id'; reverseSort = !reverseSort">Id<span ng-show="orderByField == 'id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span></a>
+                </th>
+                <th ts-criteria="Marca|lowercase" ts-default>
+                    <a href="#" ng-click="orderByField='marca'; reverseSort = !reverseSort">Marca<span ng-show="orderByField == 'marca'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span></a>
+                </th>
+                <th ts-criteria="Modelo|lowercase" ts-default>
+                    <a href="#" ng-click="orderByField='modelo'; reverseSort = !reverseSort">Modelo<span ng-show="orderByField == 'modelo'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span></a>
+                </th>
+                <th ts-criteria="Precio|parseFloat">
+                    <a href="#" ng-click="orderByField='precio'; reverseSort = !reverseSort">Precio ($us)<span ng-show="orderByField == 'precio'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span></a>
+                </th>
+                <th>
+                    <a href="#">Opciones</a>
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in $ctrl.items | filter: search" ts-repeat>
+            <tr ng-repeat="item in $ctrl.items | filter: search | orderBy:orderByField:reverseSort" ts-repeat>
                 <td>{{item.id}}</td>
                 <td>{{item.marca}}</td>
                 <td>{{item.modelo}}</td>

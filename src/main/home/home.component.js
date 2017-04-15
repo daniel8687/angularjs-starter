@@ -2,6 +2,10 @@ function AppHomeController(ItemService, $scope, $window, $uibModal) {
     console.log('Running home controller');
     var vm = this;
 
+    /* ORDENAR POR CABECERA */
+    $scope.orderByField = 'id';
+    $scope.reverseSort = false;
+
     /* CARGAR PRIMERA VEZ */
     var promise = ItemService.getItems();
     promise.then(function (result) {
@@ -66,7 +70,7 @@ function AppHomeController(ItemService, $scope, $window, $uibModal) {
 
         modalInstance.result.then(function (item) {
             console.log('modalInstance.result');
-            $scope.modalOpen = false;           
+            $scope.modalOpen = false;
         }, function () {
             console.log('modalInstance.result01');
             $scope.modalOpen = false;
@@ -74,7 +78,7 @@ function AppHomeController(ItemService, $scope, $window, $uibModal) {
 
         modalInstance.closed.then(function () {
             console.log('$uibModal.closed');
-             /* REFRESCAR */
+            /* REFRESCAR */
             promise = ItemService.getItems();
             promise.then(function (result) {
                 console.log('result', result);

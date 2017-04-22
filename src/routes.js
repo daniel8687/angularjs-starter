@@ -20,7 +20,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('home', {
       parent: 'app',
-      url: 'home',
+      url: 'home/:itemType',
       component: 'appHome'
     });
 }

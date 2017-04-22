@@ -2,7 +2,7 @@
     <div class="modal-header">
         <h3 class="modal-title">Editar Item</h3>
     </div>
-    <div class="modal-body" id="modal-body">
+    <div class="modal-body" id="modal-body-edit">
         <div>
             <label class="labelEdit">Id: </label>
             <input class="inputEdit" type="text" ng-value="item.id" ng-model="itemToEdit.id" disabled="disabled" />
@@ -28,8 +28,8 @@
 
 <div>
     <ul>
-        <li><a id="computadora" href ng-click="search = {tipo: 'computadora'}">Computadoras</a></li>
-        <li><a id="celular" href ng-click="search = {tipo: 'celular'}">Celulares</a></li>
+        <li><a id="computadora" href="" ui-sref="home({itemType: 'computadora'})">Computadoras</a></li>
+        <li><a id="celular" href="" ui-sref="home({itemType: 'celular'})">Celulares</a></li>
     </ul>
 </div>
 <div>
@@ -54,14 +54,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in $ctrl.items | filter: search | orderBy:orderByField:reverseSort" ts-repeat>
+            <tr ng-repeat="item in $ctrl.items | filter: $ctrl.search | orderBy:orderByField:reverseSort" ts-repeat>
                 <td>{{item.id}}</td>
                 <td>{{item.marca}}</td>
                 <td>{{item.modelo}}</td>
                 <td>{{item.precio | currency}}</td>
                 <td>
-                    <input type="button" value="Editar" class="btn btn-primary" ng-click="editarRow(item)" />
-                    <input type="button" value="Remover" class="btn btn-warning" ng-click="removerRow(item)" />
+                    <input type="button" value="Editar" class="btn btn-primary" ng-click="$ctrl.editarRow(item)" />
+                    <input type="button" value="Remover" class="btn btn-warning" ng-click="$ctrl.removerRow(item)" />
                 </td>
             </tr>
         </tbody>

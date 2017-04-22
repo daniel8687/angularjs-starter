@@ -1,4 +1,4 @@
-function AppLoginController(UserService, $state) {
+function AppLoginController($state, UserService) {
     console.log('Running login controller');
     var vm = this;
     vm.user = {};
@@ -9,7 +9,7 @@ function AppLoginController(UserService, $state) {
             console.log('result login', result);
             if (result.length === 1) {
                 vm.error = null;
-                $state.go('home');
+                $state.go('home',{itemType: 'computadora'});
             }
             else {
                 vm.error = 'Usuario o Contraseña invalida. Por favor intente nuevamente';

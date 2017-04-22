@@ -3,15 +3,22 @@ angular
     .factory('ItemService', ItemService);
 
 function ItemService($log, $q, $resource) {
-
+    var resource = $resource('http://localhost:9002/items/:id', {
+        id: '@id'
+    },
+        {
+            update: {
+                method: 'PUT'
+            }
+        });
     return {
         getItems: getItems,
+        getItem: getItem,
         deleteItem: deleteItem,
         editItem: editItem
     };
 
     function getItems() {
-        var resource = $resource('http://localhost:9002/items');
         $log.info('Running getItems');
         var future = $q.defer();
         resource.query().$promise.then(function (result) {
@@ -22,11 +29,21 @@ function ItemService($log, $q, $resource) {
         return future.promise;
     }
 
+    function getItem(itemId) {
+        $log.info('Running getItem');
+        var future = $q.defer();
+        resource.get({ id: itemId }).$promise.then(function (result) {
+            future.resolve(result);
+        }).catch(function (error) {
+            future.reject(error);
+        });
+        return future.promise;
+    }
+
     function deleteItem(item) {
-        var resource = $resource('http://localhost:9002/items/:id', { id: item.id });
         $log.info('Running deleteItem');
         var future = $q.defer();
-        resource.remove(item).$promise.then(function (result) {
+        resource.delete({ id: item.id }).$promise.then(function (result) {
             future.resolve(result);
         }).catch(function (error) {
             future.reject(error);
@@ -35,14 +52,9 @@ function ItemService($log, $q, $resource) {
     }
 
     function editItem(item) {
-        var resource = $resource('http://localhost:9002/items/:id', { id: item.id }, {
-            update: {
-                method: 'PUT'
-            }
-        });
         $log.info('Running editItem');
         var future = $q.defer();
-        resource.update(item).$promise.then(function (result) {
+        resource.update({ id: item.id }, item).$promise.then(function (result) {
             future.resolve(result);
         }).catch(function (error) {
             future.reject(error);

@@ -9,6 +9,7 @@ function AppLoginController($state, UserService) {
             console.log('result login', result);
             if (result.length === 1) {
                 vm.error = null;
+                UserService.successfulLogin();
                 $state.go('home',{itemType: 'computadora'});
             }
             else {

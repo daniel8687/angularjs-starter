@@ -4,8 +4,12 @@ angular
 
 function UserService($log, $q, $resource) {
     var resource = $resource('http://localhost:9001/users');
+    var userIsAuthenticated = false;
+
     return {
-        validateUser: validateUser
+        validateUser: validateUser,
+        successfulLogin: successfulLogin,
+        statusLogin: statusLogin
     };
 
     function validateUser(user) {
@@ -18,5 +22,15 @@ function UserService($log, $q, $resource) {
             future.reject(error);
         });
         return future.promise;
+    }
+
+    function successfulLogin() {
+        $log.info('Running successfulLogin');
+        userIsAuthenticated = true;
+    }
+
+    function statusLogin() {
+        $log.info('Running statusLogin');        
+        return userIsAuthenticated;
     }
 }

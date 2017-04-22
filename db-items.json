@@ -1,24 +1,73 @@
 {
   "items": [
     {
-      "id": 3,
-      "marca": "Marca_Celulara_3",
-      "modelo": "Modelo_Celular_3",
-      "precio": 1003,
-      "tipo": "celular"
-    },
-    {
-      "id": 6,
-      "marca": "Marca_edi123_6",
-      "modelo": "Modelo_edit123_6",
+      "id": 1,
+      "marca": "Marca_Comp_1",
+      "modelo": "Modelo_Comp_1",
       "precio": "1",
       "tipo": "computadora"
     },
     {
+      "id": 2,
+      "marca": "Marca_Comp_2",
+      "modelo": "Modelo_Comp_2",
+      "precio": "2",
+      "tipo": "computadora"
+    },
+    {
+      "id": 3,
+      "marca": "Marca_Comp_3",
+      "modelo": "Modelo_Comp_3",
+      "precio": "3",
+      "tipo": "computadora"
+    },
+    {
+      "id": 4,
+      "marca": "Marca_Comp_4",
+      "modelo": "Modelo_Comp_4",
+      "precio": "4",
+      "tipo": "computadora"
+    },
+    {
+     "id": 5,
+      "marca": "Marca_Comp_5",
+      "modelo": "Modelo_Comp_5",
+      "precio": "5",
+      "tipo": "computadora"
+    },
+    {
+      "id": 6,
+      "marca": "Marca_Cel_6",
+      "modelo": "Modelo_Cel_6",
+      "precio": 6,
+      "tipo": "celular"
+    },
+    {
+      "id": 7,
+      "marca": "Marca_Cel_7",
+      "modelo": "Modelo_Cel_7",
+      "precio": 7,
+      "tipo": "celular"
+    },
+    {
       "id": 8,
-      "marca": "Marca_xx_8",
-      "modelo": "Modelo_xx_8",
-      "precio": 1008,
+      "marca": "Marca_Cel_8",
+      "modelo": "Modelo_Cel_8",
+      "precio": 8,
+      "tipo": "celular"
+    },
+    {
+      "id": 9,
+      "marca": "Marca_Cel_9",
+      "modelo": "Modelo_Cel_9",
+      "precio": 9,
+      "tipo": "celular"
+    },
+    {
+      "id": 10,
+      "marca": "Marca_Cel_10",
+      "modelo": "Modelo_Cel_10",
+      "precio": 10,
       "tipo": "celular"
     }
   ]

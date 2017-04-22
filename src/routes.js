@@ -16,11 +16,17 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('login', {
       parent: 'app',
       url: 'login',
-      component: 'appLogin'
+      component: 'appLogin',
+      data: {
+        requiredLogin: false
+      }
     })
     .state('home', {
       parent: 'app',
       url: 'home/:itemType',
-      component: 'appHome'
+      component: 'appHome',
+      data: {
+        requiredLogin: true
+      }
     });
 }
